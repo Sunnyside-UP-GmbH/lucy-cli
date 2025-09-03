@@ -105,18 +105,19 @@ export const runInstall = Effect.gen(function*() {
     yield* install;
 })
 
-// export const yarnSetVersion = Effect.gen(function*() {
-//         const yarnDev = Command.make(
-//             "yarn",
-//             "set",
-//             "version",
-//             "berry",
-//         ).pipe(
-//         Command.stdout("inherit"), // Stream stdout to process.stdout
-//         Command.exitCode // Get the exit code
-//     )
-//     yield* yarnDev;
-// })
+export const yarnSetVersion = Effect.gen(function*() {
+        const set = Command.make(
+            "yarn",
+            "set",
+            "version",
+            "berry",
+        ).pipe(
+        Command.stdout("inherit"), // Stream stdout to process.stdout
+        Command.exitCode // Get the exit code
+    )
+    yield* set;
+})
+
 export const installVeloPackages = Effect.gen(function*() {
     const config = yield* Config;
         const simpleSchedule = Schedule.tapOutput(
@@ -192,18 +193,37 @@ export const installVeloPackages = Effect.gen(function*() {
         devPkgs.push(key);
     }
 
-    const yarn = Command.make(
-            "yarn",
-            "add",
+    const manager = config.config.lucySettings.packageManager;
+    function pkgMgrParamsInstall():string[] {
+        if (manager === "npm") {
+            return ["install"];
+        }
+        if (manager === "pnpm") {
+            return ["install"];
+        }
+        return ["add"];
+    }
+    function pkgMgrParamsInstallDev():string[] {
+        if (manager === "npm") {
+            return ["install", "-D"];
+        }
+        if (manager === "pnpm") {
+            return ["install", "-D"];
+        }
+        return ["add", "-D"];
+    }
+
+    const install = Command.make(
+        manager,
+        ...pkgMgrParamsInstall(),
             ...pkgs,
         ).pipe(
         Command.stdout("inherit"), // Stream stdout to process.stdout
         Command.exitCode // Get the exit code
     )
-    const yarnDev = Command.make(
-            "yarn",
-            "add",
-            "-D",
+    const installDev = Command.make(
+            manager,
+            ...pkgMgrParamsInstallDev(),
             ...devPkgs,
         ).pipe(
         Command.stdout("inherit"), // Stream stdout to process.stdout
@@ -217,12 +237,12 @@ export const installVeloPackages = Effect.gen(function*() {
     }
 
     logger.info("Installing dependencies");
-    if ((yield* yarn) !== 0) {
+    if ((yield* install) !== 0) {
         return logger.error("Failed to install dependencies. Please check the error message above.");
     }
 
     logger.info("Installing dev dependencies");
-    if ((yield* yarnDev) !== 0) {
+    if ((yield* installDev) !== 0) {
         return logger.error("Failed to install dev dependencies. Please check the error message above.");
     }
 

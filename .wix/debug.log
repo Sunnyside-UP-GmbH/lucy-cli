@@ -1,0 +1,10 @@
+----- CLI crash report at 2025-08-10T16:11:35.320Z
+Error Trace
+FailedToIdentifyProgramFlow: FailedToIdentifyProgramFlow
+    at _Command.<anonymous> (/Users/gradlon/.nvm/versions/node/v20.11.1/lib/node_modules/@wix/cli/src/program.ts:73:15)
+    at _Command.emit (node:events:518:28)
+    at _Command._parseCommand (/Users/gradlon/.nvm/versions/node/v20.11.1/lib/node_modules/node_modules/commander/lib/command.js:1607:14)
+    at _Command.parseAsync (/Users/gradlon/.nvm/versions/node/v20.11.1/lib/node_modules/node_modules/commander/lib/command.js:1104:16)
+    at <anonymous> (/Users/gradlon/.nvm/versions/node/v20.11.1/lib/node_modules/@wix/cli/src/index.tsx:80:39)
+Error Info
+{}

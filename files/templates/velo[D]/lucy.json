@@ -133,5 +133,5 @@
     "e2e": "cypress-cloud run --parallel --record"
   },
   "type": "velo",
-  "packageManager": "pnpm"
+  "packageManager": "yarn"
 }

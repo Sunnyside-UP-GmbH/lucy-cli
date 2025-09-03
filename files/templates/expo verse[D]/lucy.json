@@ -1,0 +1,86 @@
+{
+  "modules": {},
+  "devDependencies": {
+    "tailwindcss": "^3.4.17",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "@styled/typescript-styled-plugin": "",
+    "typescript-eslint-language-service": "",
+    "eslint-config-prettier": "",
+    "eslint-plugin-jsdoc": "",
+    "eslint-plugin-named-import-spacing": "",
+    "eslint-plugin-only-warn": "",
+    "eslint-plugin-react": "",
+    "eslint-plugin-react-hooks": "",
+    "eslint-plugin-simple-import-sort": "",
+    "@next/eslint-plugin-next": "",
+    "@stylelint/postcss-css-in-js": "",
+    "@typescript-eslint/parser": "",
+    "typescript-eslint": "",
+    "@total-typescript/ts-reset": "",
+    "expo-doctor": "",
+    "tsx": ""
+  },
+  "dependencies": {
+    "nativewind": "",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "@wix/sdk": "1.15.24",
+    "@wix/data": "",
+    "expo-standard-web-crypto": "",
+    "effect": "",
+    "node-libs-react-native": "",
+    "util": "",
+    "events": "",
+    "tailwindcss-animate": "",
+    "papaparse": ""
+  },
+  "additionalCommands": [
+    [
+      "npx",
+      "expo",
+      "install",
+      "tailwindcss-animate",
+      "class-variance-authority",
+      "clsx",
+      "tailwind-merge",
+      "expo-crypto",
+      "react-dom",
+      "react-native-web",
+      "@expo/metro-runtime",
+      "expo-system-ui",
+      "expo-localization",
+      "expo-file-system",
+      "expo-asset"
+    ]
+  ],
+  "scripts": {
+    "dev": "expo start",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "reset": "tsx ./scripts/reset-project.ts",
+    "format": "prettier --write \"./*.json\" \"**/*.{ts,tsx,md,json,jsonc,json5}\"",
+    "prebuild": "expo prebuild",
+    "pods": "npx pod-install",
+    "build:dev": "eas build --local --profile development",
+    "build:sim": "eas build --local --profile ios-simulator",
+    "build:prev": "eas build --local --profile preview",
+    "build:prod": "eas build --local --profile production",
+    "build:web": "expo export --platform web",
+    "doctor": "expo-doctor",
+    "eas-build-pre-install": "corepack enable && yarn set version 4"
+  },
+  "initialized": false,
+  "type": "expo",
+  "packageManager": "pnpm",
+  "additionalPkgProps": {
+    "expo": {
+      "doctor": {
+        "reactNativeDirectoryCheck": {
+          "listUnknownPackages": false
+        }
+      }
+    }
+  }
+}

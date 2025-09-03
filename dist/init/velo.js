@@ -13,7 +13,7 @@ import { checkForVelo } from "../commands/checks.js";
 import { AppError } from "../error.js";
 import Enquirer from "enquirer";
 import { prepareVelo } from "./prepareVelo.js";
-import { openVSCode } from "../commands/exec.js";
+import { openEditor } from "../commands/exec.js";
 export const init_velo = () => {
     return Effect.gen(function* () {
         const config = yield* Config;
@@ -49,12 +49,13 @@ export const init_velo = () => {
         yield* writeLucySettings;
         yield* writePackageJson;
         yield* gitInit();
+        yield* runInstall;
         yield* installVeloPackages;
         yield* runInstall;
         yield* cleanup;
         yield* setInitialized;
         logger.success("Velo initialized successfully!");
-        yield* openVSCode;
+        yield* openEditor;
     });
 };
 //# sourceMappingURL=velo.js.map

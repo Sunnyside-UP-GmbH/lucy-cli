@@ -10,3 +10,4 @@ export declare const wixSDKSettings: Schema.Struct<{
     siteId: typeof Schema.String;
 }>;
 export type WixSDKSettings = typeof wixSDKSettings.Type;
+export declare const editors: readonly ["vscode", "cursor"];

@@ -9,7 +9,7 @@ import { Config } from "../config.js";
 import { Command } from "@effect/platform";
 import { AppError } from "../error.js";
 import { approveBuilds, installPackages } from "../commands/install.js";
-import { openVSCode } from "../commands/exec.js";
+import { openEditor } from "../commands/exec.js";
 export const init_tauri = () => {
     return Effect.gen(function* () {
         const config = yield* Config;
@@ -26,7 +26,7 @@ export const init_tauri = () => {
         yield* gitInit();
         yield* setInitialized;
         logger.success("Tauri project initialized successfully!");
-        yield* openVSCode;
+        yield* openEditor;
     });
 };
 //# sourceMappingURL=tauri.js.map

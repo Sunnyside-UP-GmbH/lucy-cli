@@ -1,7 +1,7 @@
 import { Schema } from "effect/index";
 import { initTypes } from "./types.js";
 
-export const pkgManagers = ['pnpm', 'npm', 'yarn'] as const;
+export const pkgManagers = ['pnpm', 'yarn', 'npm'] as const;
 export const lucySettings = Schema.mutable(Schema.Struct({
 	modules: Schema.Record({
         key: Schema.String, 

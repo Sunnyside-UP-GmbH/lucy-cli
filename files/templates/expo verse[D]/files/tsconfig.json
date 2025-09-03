@@ -1,0 +1,45 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "alwaysStrict": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "exactOptionalPropertyTypes": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "plugins": [
+      {
+        "name": "@styled/typescript-styled-plugin"
+      },
+      {
+        "name": "typescript-eslint-language-service"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./*"
+      ]
+    },
+    "resolveJsonModule": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "nativewind-env.d.ts",
+    "metro.config.js",
+    "eslint.config.mjs",
+    "tailwind.config.js",
+    "babel.config.js",
+    ".prettierrc.js"
+  ]
+}

@@ -10,7 +10,7 @@ import { approveBuilds, installPackages, runInstall } from "../commands/install.
 import { cleanup } from "../commands/cleanup.js";
 import { gitInit } from "../commands/git.js";
 import { checkForDirty } from "../commands/checks.js";
-import { openVSCode } from "../commands/exec.js";
+import { openEditor } from "../commands/exec.js";
 export const init_monorepo = () => {
     return Effect.gen(function* () {
         const config = yield* Config;
@@ -42,7 +42,7 @@ export const init_monorepo = () => {
         yield* cleanup;
         yield* setInitialized;
         logger.success("Monorepo initialized successfully!");
-        yield* openVSCode;
+        yield* openEditor;
     });
 };
 //# sourceMappingURL=monorepo.js.map

@@ -109,7 +109,6 @@ export async function get_args(): Promise<LucyArgs> {
   monorepo           Monorepo setup
   tauri              Tauri desktop app
   cargo              Rust project
-  submodules         Git submodules
   wix-sdk            Wix SDK setup
 
 For more information, visit https://github.com/Sunnyside-UP-GmbH/lucy-cli

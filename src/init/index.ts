@@ -40,13 +40,19 @@ export const init = Effect.gen(function* (_) {
     yield* selectTemplate();
     yield* readLucyJsonFromTemplate;
 
+    function supportedPackageManagers() {
+        if(config.config.action.initType === 'velo') {
+            return pkgManagers.filter(pkgMgr => pkgMgr !== 'pnpm')
+        }
+        return pkgManagers
+    }
     const pkgMgrQuestion = new Enquirer();
     const pkgMgr = yield* Effect.tryPromise({
         try: () => pkgMgrQuestion.prompt({
             type: 'select',
             name: 'packageManager',
             message: 'Select a package manager',
-            choices: [...pkgManagers],
+            choices: [...supportedPackageManagers()],
         }),
         catch: (e) => {
             return new AppError({ cause: e, message: 'Error selecting package manager' });

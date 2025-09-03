@@ -7,7 +7,7 @@ import { mergeAdditions, mergeLucySettings2PackageJson, setInitialized } from ".
 import { writeLucySettings, writePackageJson } from "../commands/write.js";
 import { copyTemplateFiles } from "../commands/copy.js";
 import { readPackageJson } from "../commands/read.js";
-import { execCommand, openVSCode } from "../commands/exec.js";
+import { execCommand, openEditor } from "../commands/exec.js";
 import { approveBuilds, installPackages } from "../commands/install.js";
 import { AppError } from "../error.js";
 import { cleanup } from "../commands/cleanup.js";
@@ -46,7 +46,7 @@ export const init_expo = () => {
         yield* cleanup;
         yield* setInitialized;
         logger.success("Expo project initialized successfully!");
-        yield* openVSCode;
+        yield* openEditor;
     });
 };
 //# sourceMappingURL=expo.js.map

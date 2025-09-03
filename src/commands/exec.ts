@@ -5,6 +5,7 @@ import { logger } from "../utils/logger.js";
 import { FileSystem } from "@effect/platform"
 import Enquirer from "enquirer";
 import { AppError } from "../error.js";
+import { editors } from "../schemas/index.js";
 
 export const execCommand = Effect.gen(function*() {
     const config = yield* Config;
@@ -38,22 +39,16 @@ export const open = Effect.scoped(Effect.gen(function*() {
     yield* command.pipe().pipe(Command.stdout("inherit"), Command.stderr("inherit"), Command.exitCode);
 }))
 
-export const openVSCode = Effect.gen(function*() {
+export const openEditor = Effect.gen(function*() {
     const config = yield* Config;
-    const open = Command.make(
-        "code", 
-        config.config.cwd,
-        ).pipe(
-        Command.stdout("inherit"), // Stream stdout to process.stdout
-        Command.stderr("inherit"), // Stream stderr to process.stderr
-        Command.exitCode // Get the exit code
-    )
-    const overwriteQuestion = new Enquirer();
-    const openVScodeQuestion = yield* Effect.tryPromise({
-        try: () => overwriteQuestion.prompt({
-            type: 'confirm',
-            name: 'openVSCode',
-            message: `Do you want to open the project in VSCode?`,
+
+    const editorQuestion = new Enquirer();
+    const openEditorQuestion = yield* Effect.tryPromise({
+        try: () => editorQuestion.prompt({
+            type: 'select',
+            name: 'openEditor',
+            message: `Do you want to open the project in a supported editor?`,
+            choices: [...editors, 'No'],
         }),
         catch: (e) => {
             return new AppError({
@@ -62,8 +57,17 @@ export const openVSCode = Effect.gen(function*() {
             });
         }
     })
-    const choice = yield* Schema.decodeUnknown(Schema.Struct({ openVSCode: Schema.Boolean }))(openVScodeQuestion);
-    if (choice.openVSCode) {
+    const choice = yield* Schema.decodeUnknown(Schema.Struct({ openEditor: Schema.Literal(...editors, 'No') }))(openEditorQuestion);
+
+    const open = Command.make(
+        choice.openEditor, 
+        config.config.cwd,
+        ).pipe(
+        Command.stdout("inherit"), // Stream stdout to process.stdout
+        Command.stderr("inherit"), // Stream stderr to process.stderr
+        Command.exitCode // Get the exit code
+    )
+    if (choice.openEditor !== 'No') {
         yield* open
     }
 })

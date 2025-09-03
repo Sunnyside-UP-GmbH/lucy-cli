@@ -13,3 +13,5 @@ export const wixSDKSettings = Schema.Struct({
 	siteId: Schema.String,
 });
 export type WixSDKSettings = typeof wixSDKSettings.Type;
+
+export const editors = ['vscode', 'cursor'] as const;
