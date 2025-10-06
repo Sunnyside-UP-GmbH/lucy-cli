@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - '@swc/core'
+  - msgpackr-extract
+  - sqlite3
+  - unrs-resolver

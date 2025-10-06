@@ -33,8 +33,8 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@effect/platform": "^0.90.0",
-    "@effect/platform-node": "^0.94.0",
+    "@effect/platform": "0.92.1",
+    "@effect/platform-node": "0.98.3",
     "@swc/core": "^1.9.3",
     "@wix/cli": "^1.0.83",
     "@wix/data": "^1.0.270",
@@ -99,10 +99,9 @@
     "@typescript-eslint/utils": "8.39.0",
     "eslint": "9.32.0",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsdoc": "52.0.4",
+    "eslint-plugin-jsdoc": "60.8.2",
     "eslint-plugin-named-import-spacing": "^1.0.3",
     "eslint-plugin-simple-import-sort": "12.1.1",
     "ts-node": "10.9.2"
-  },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  }
 }
