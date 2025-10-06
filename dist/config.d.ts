@@ -38,5 +38,5 @@ export declare const lucyJsonPath: string;
 export declare const veloSyncJsonPath: string;
 export declare const wixSDKSettingsJsonPath: string;
 export declare const syncFilesSource: string;
-export declare const ConfigLayer: (args: Awaited<ReturnType<typeof get_args>>) => Layer.Layer<Config, import("@effect/platform/Error").PlatformError | import("effect/ParseResult").ParseError, never>;
+export declare const ConfigLayer: (args: Awaited<ReturnType<typeof get_args>>) => Layer.Layer<Config, import("effect/ParseResult").ParseError | import("@effect/platform/Error").PlatformError, never>;
 export {};
