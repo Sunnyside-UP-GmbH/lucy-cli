@@ -35,10 +35,10 @@
       }
     ],
     "paths": {
-      "public/*": ["./typescript/public/*"],
-      "backend/*": ["./typescript/backend/*"],
+      "public/*": ["./typescript/public/*", "./lib/public/*"],
+      "backend/*": ["./typescript/backend/*", "./lib/backend/*"],
       "pages/*": ["./typescript/pages/*"],
-      "types/*": ["./typescript/types/*"]
+      "types/*": ["./typescript/types/*", "./lib/types/*"]
     },
     "typeRoots": [
       "./types",
@@ -54,7 +54,8 @@
     "../node_modules",
     "node_modules",
     "./**/*.test.ts",
-    "../src/**/*"
+    "../src/**/*",
+    "./cypress.config.mjs"
   ],
-  "include": ["!*.d.ts", "public/**/*.tsx", "**/*.ts"]
+  "include": ["!*.d.ts", "**/public/**/*.tsx", "**/*.ts"]
 }
