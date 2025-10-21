@@ -24,10 +24,10 @@ export function watchAll(options) {
             '*/public/**/*.ts',
             '*/public/**/*.tsx',
             '!src/**/*',
-        ], gulp.parallel(checkTs(options), buildPublic(options)));
+        ], gulp.parallel(checkTs(options, true), buildPublic(options)));
     }
     function watchPages() {
-        return gulp.watch(['typescript/pages/**/*.ts', '!src/**/*',], gulp.parallel(checkTs(options), buildPages(options)));
+        return gulp.watch(['typescript/pages/**/*.ts', '!src/**/*',], gulp.parallel(checkTs(options, true), buildPages(options)));
     }
     function watchFiles() {
         return gulp.watch([
@@ -45,7 +45,7 @@ export function watchAll(options) {
             '*/backend/templates/data/*.json',
             '!*/backend/templates/render.ts',
             '!src/**/*',
-        ], gulp.parallel(previewTemplates(options), checkTs(options)));
+        ], gulp.parallel(previewTemplates(options), checkTs(options, true)));
     }
     function watchTypes() {
         return gulp.watch([

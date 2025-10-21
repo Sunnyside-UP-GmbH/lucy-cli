@@ -47,7 +47,7 @@ export const task_runGulp = Effect.gen(function* (_) {
         modulesSourcePaths: yield* getModulesSourcePaths,
     };
     logger.action(`Running task: ${task}`);
-    gulp.task('check-ts', gulp.parallel(checkTs(taskOptions)));
+    gulp.task('check-ts', gulp.parallel(checkTs(taskOptions, false)));
     gulp.task('scss', gulp.parallel(compileScss(taskOptions)));
     gulp.task('build-backend', gulp.parallel(buildBackend(taskOptions), buildBackendJSW(taskOptions)));
     gulp.task('build-public', gulp.parallel(buildPublic(taskOptions)));

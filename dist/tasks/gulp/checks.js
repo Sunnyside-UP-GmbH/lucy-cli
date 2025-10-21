@@ -43,7 +43,7 @@ import { logger, red, yellow } from '../../utils/logger.js';
  * @param {string} filePath File path
  * @param {string} pattern Pattern to match
  */
-function extractMatchFromFile(filePath, pattern) {
+async function extractMatchFromFile(filePath, pattern) {
     return new Promise((resolve, reject) => {
         fs.readFile(filePath, 'utf8', (err, data) => {
             if (err) {
@@ -66,7 +66,7 @@ function extractMatchFromFile(filePath, pattern) {
 async function readFilesInFolder(folderPath, pattern, globPattern) {
     const files = await glob.glob(path.join(folderPath, globPattern));
     const filenameList = [];
-    function traverseFiles(index) {
+    async function traverseFiles(index) {
         if (index === files.length) {
             return;
         }
@@ -74,30 +74,31 @@ async function readFilesInFolder(folderPath, pattern, globPattern) {
         if (pattern) {
             if (!file)
                 return;
-            extractMatchFromFile(file, pattern)
-                .then((capturedGroup) => {
+            try {
+                const capturedGroup = await extractMatchFromFile(file, pattern);
                 if (capturedGroup) {
                     filenameList.push(capturedGroup);
                 }
-                traverseFiles(index + 1);
-            })
-                .catch(() => { throw new Error(`Error reading file: ${file}`); });
+            }
+            catch (error) {
+                throw new Error(`Error reading file: ${file}`);
+            }
         }
         if (!pattern) {
             if (!file)
                 return;
             filenameList.push(path.basename(file));
-            traverseFiles(index + 1);
         }
+        await traverseFiles(index + 1);
     }
-    traverseFiles(0);
+    await traverseFiles(0);
     return filenameList;
 }
 export async function checkPages(fail, force) {
     logger.action('Checking pages...');
     return new Promise(async (resolve, reject) => {
         try {
-            const sourcePages = await readFilesInFolder('./.wix/types/', '\\/pages\\/(?<page>.*\\.ts)', '**/*.json');
+            const sourcePages = await readFilesInFolder('./.wix/types/', '\\/pages\\/(?<page>.*\\.ts)', '*/*.json');
             const tsPages = await readFilesInFolder('./typescript/pages', null, '**/*.ts');
             const sourcePagesSet = new Set(sourcePages);
             const tsPagesSet = new Set(tsPages);
@@ -173,7 +174,7 @@ export function checkTs(options, watching = false) {
         const task = (done) => {
             let hasError = false;
             const stream = gulp
-                .src([`${folder}/**/*.ts`, `!${folder}/types/**/*.ts`])
+                .src([`${folder}/**/*.{ts,tsx}`, `!${folder}/types/**/*.ts`])
                 .pipe(tsProject(customReporter))
                 .on("error", (error) => {
                 hasError = true;

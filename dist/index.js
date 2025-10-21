@@ -19,8 +19,9 @@ process.on('exit', (code) => {
     if (!needsCleanup)
         return;
     if (exitReason === 'none') {
-        killAllProcesses('@wix/cli/bin/wix.cjs'); // Matches processes running the Wix CLI
+        killAllProcesses('@wix/cli/bin/wix.cjs');
         killAllProcesses('wix:dev');
+        killAllProcesses('wix dev');
         cleanupWatchers();
     }
     logger.info(`🛑 Process exited with code: ${code}`);
@@ -30,6 +31,7 @@ process.on('SIGINT', () => {
     logger.info(`🐕 Received Ctrl+C (SIGINT), cleaning up...`);
     killAllProcesses('@wix/cli/bin/wix.cjs'); // Matches processes running the Wix CLI
     killAllProcesses('wix:dev');
+    killAllProcesses('wix dev');
     cleanupWatchers();
     process.exit(); // Exit explicitly after handling
 });
@@ -38,6 +40,7 @@ process.on('SIGTERM', () => {
     logger.info(`🛑 Received termination signal (SIGTERM), cleaning up...`);
     killAllProcesses('@wix/cli/bin/wix.cjs'); // Matches processes running the Wix CLI
     killAllProcesses('wix:dev');
+    killAllProcesses('wix dev');
     cleanupWatchers();
     process.exit(); // Exit explicitly after handling
 });

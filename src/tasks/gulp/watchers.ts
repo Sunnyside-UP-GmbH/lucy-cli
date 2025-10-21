@@ -35,7 +35,7 @@ export function watchAll(options: TaskOptions): TaskType {
             '*/public/**/*.tsx',
             '!src/**/*',
         ], gulp.parallel(
-            checkTs(options),
+            checkTs(options, true),
             buildPublic(options),
         ));
     }
@@ -43,7 +43,7 @@ export function watchAll(options: TaskOptions): TaskType {
     function watchPages() {
         return 	gulp.watch(['typescript/pages/**/*.ts', '!src/**/*',], 
         gulp.parallel(
-            checkTs(options),
+            checkTs(options, true),
             buildPages(options),
             )
         );
@@ -68,7 +68,7 @@ export function watchAll(options: TaskOptions): TaskType {
             '!src/**/*',
         ], gulp.parallel(
             previewTemplates(options),
-            checkTs(options),
+            checkTs(options, true),
             )
         );
     }

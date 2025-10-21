@@ -55,7 +55,7 @@ export const task_runGulp = Effect.gen(function* (_) {
 	logger.action(`Running task: ${task}`);
 
 	gulp.task('check-ts', gulp.parallel( 
-		checkTs(taskOptions),
+		checkTs(taskOptions, false),
 	));
 
 	gulp.task('scss', gulp.parallel( 

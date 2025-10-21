@@ -89,13 +89,5 @@ export function cleanupWatchers() {
 
     logger.info(`Cleaning watchers for directory: ${cwd}`);
     const result = spawnSync(command, { shell: true, encoding: 'utf-8' });
-
-    // if (result.stderr) {
-    //     logger.error(`spawnSync error: ${result.stderr}`);
-    //     return;
-    // }
-    // if (!result.stdout.trim()) {
-    //     logger.info(`No watchers found to clean up.`);
-    //     return;
-    // }
+    return result;
 }

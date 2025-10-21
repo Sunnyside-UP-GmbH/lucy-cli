@@ -82,13 +82,6 @@ export function cleanupWatchers() {
     const command = `watchman watch-del "${cwd}"`; // Adjust for Windows paths
     logger.info(`Cleaning watchers for directory: ${cwd}`);
     const result = spawnSync(command, { shell: true, encoding: 'utf-8' });
-    // if (result.stderr) {
-    //     logger.error(`spawnSync error: ${result.stderr}`);
-    //     return;
-    // }
-    // if (!result.stdout.trim()) {
-    //     logger.info(`No watchers found to clean up.`);
-    //     return;
-    // }
+    return result;
 }
 //# sourceMappingURL=helpers.js.map
