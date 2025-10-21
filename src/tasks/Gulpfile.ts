@@ -102,7 +102,7 @@ export const task_runGulp = Effect.gen(function* (_) {
 	});
 
 	gulp.task('sync-types', shell.task([
-		'yarn postinstall',
+		'wix sync-types',
 	]));
 
 	gulp.task('fix-wix-types', gulp.parallel(
@@ -118,7 +118,7 @@ export const task_runGulp = Effect.gen(function* (_) {
 	));
 
 	gulp.task('start-wix', shell.task([
-		'yarn wix:dev',
+		'wix dev',
 	]));
 
 	gulp.task('gen-docs', shell.task([

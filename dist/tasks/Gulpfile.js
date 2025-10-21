@@ -68,7 +68,7 @@ export const task_runGulp = Effect.gen(function* (_) {
         });
     });
     gulp.task('sync-types', shell.task([
-        'yarn postinstall',
+        'wix sync-types',
     ]));
     gulp.task('fix-wix-types', gulp.parallel(updateWixTypes(taskOptions)));
     gulp.task('add-wix-types', function (done) {
@@ -76,7 +76,7 @@ export const task_runGulp = Effect.gen(function* (_) {
     });
     gulp.task('set-production', gulp.parallel(setProdConfig()));
     gulp.task('start-wix', shell.task([
-        'yarn wix:dev',
+        'wix dev',
     ]));
     gulp.task('gen-docs', shell.task([
         'yarn docs',
