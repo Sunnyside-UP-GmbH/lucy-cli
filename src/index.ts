@@ -20,7 +20,7 @@ export function setNeedsCleanup(value: boolean) {
 process.on('exit', (code) => {
     if(!needsCleanup) return;
     if(exitReason === 'none') {
-	    killAllProcesses('@wix/cli/bin/wix.cjs');
+        killAllProcesses('@wix/cli/bin/wix.cjs');
         killAllProcesses('wix:dev');   
         killAllProcesses('wix dev');   
         cleanupWatchers();

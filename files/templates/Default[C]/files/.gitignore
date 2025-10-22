@@ -1,7 +1,0 @@
-config/schema.json
-target
-apps/api/target$
-
-# wix secrets files
-wix-sync.json
-wix-sdk-settings.json

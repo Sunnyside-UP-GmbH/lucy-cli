@@ -13,7 +13,6 @@ import { init_velo } from "./velo.js";
 import { init_submodules } from "./gitModules.js";
 import { init_tauri } from "./tauri.js";
 import { pkgManagers } from "../schemas/lucy.js";
-//TODO: Get Templates from Reposytory
 //TODO: Update Local tsconfig for libs
 //TODO: Fix PNPM in VELO
 export const init = Effect.gen(function* (_) {

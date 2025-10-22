@@ -14,6 +14,7 @@ export const copyTemplateFiles = Effect.gen(function*() {
         (file) => fs.copy(path.join(config.config.templateFiles, file), path.join(config.config.cwd, file), { overwrite: true })
     )
 })
+
 export const copySyncFiles = Effect.gen(function*() {
     const fs = yield* FileSystem.FileSystem;
     const config = yield* Config;

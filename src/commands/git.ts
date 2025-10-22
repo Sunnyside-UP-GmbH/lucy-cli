@@ -111,3 +111,42 @@ export const initSubmodules = (update: boolean = false) => Effect.gen(function* 
     logger.success("All modules processed!");
 
 })
+
+export const gitSyncTemplates = (update: boolean = false) => Effect.gen(function* () {
+    const config = yield* Config;
+    const path = yield * Path.Path;
+    const templatesPath = path.join(config.config.lucyHome, 'templates');
+    const fs = yield* FileSystem.FileSystem
+
+    const exists = yield* fs.exists(templatesPath)
+
+    if(!exists) {
+        const git = simpleGit({ baseDir: path.join(config.config.lucyHome) });
+        console.log('cloning templates repository');
+        yield* Effect.tryPromise({
+            try: () => git.clone('https://github.com/Sunnyside-UP-GmbH/lucy-templates.git', 'templates'),
+            catch: (error) => {
+                console.log(error);
+                return new AppError({
+                    cause: error,
+                    message: "Failed to clone templates repository",
+                });
+            }
+        })
+    }
+
+    if(exists) {
+        const git = simpleGit({ baseDir: path.join(config.config.lucyHome, 'templates') });
+        yield* Effect.tryPromise({
+            try: () => git.pull(),
+            catch: (error) => {
+                console.log(error);
+                return new AppError({
+                    cause: error,
+                    message: "Failed to pull templates repository",
+                });
+            }
+        })
+    }
+
+})
