@@ -1,9 +1,14 @@
 {
   "type": "module",
   "name": "lucy-cli",
-  "version": "2.0.0-beta.13",
+  "version": "2.0.0-beta.15",
   "description": "Lucy Framework for WIX Studio Editor",
-  "main": ".dist/index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "lucy",
+    "patches"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
