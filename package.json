@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "lucy-cli",
-  "version": "2.0.0-beta.12",
+  "version": "2.0.0-beta.13",
   "description": "Lucy Framework for WIX Studio Editor",
   "main": ".dist/index.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "@wix/sdk": "^1.15.26",
     "@wix/sites": "^1.0.24",
     "chalk": "^5.3.0",
+    "dotenv": "^17.2.3",
     "effect": "^3.17.1",
     "enquirer": "^2.4.1",
     "glob": "11.0.3",
