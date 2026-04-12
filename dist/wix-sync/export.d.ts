@@ -1,4 +1,1 @@
-import { Effect } from "effect/index";
-import { Config } from "../config.js";
-import { AppError } from "../error.js";
-export declare const exportData: Effect.Effect<undefined, AppError, Config>;
+export declare const exportData: any;

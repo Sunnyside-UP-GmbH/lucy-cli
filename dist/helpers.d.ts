@@ -7,4 +7,4 @@ export declare function killAllProcesses(processPattern: string): void;
 /**
  * Clean up and run a command before exiting the process.
  */
-export declare function cleanupWatchers(): import("child_process").SpawnSyncReturns<string>;
+export declare function cleanupWatchers(): any;

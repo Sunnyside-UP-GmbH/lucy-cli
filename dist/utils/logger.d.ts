@@ -1,9 +1,9 @@
-export declare const orange: import("chalk").ChalkInstance;
-export declare const blue: import("chalk").ChalkInstance;
-export declare const green: import("chalk").ChalkInstance;
-export declare const red: import("chalk").ChalkInstance;
-export declare const yellow: import("chalk").ChalkInstance;
-export declare const magenta: import("chalk").ChalkInstance;
+export declare const orange: any;
+export declare const blue: any;
+export declare const green: any;
+export declare const red: any;
+export declare const yellow: any;
+export declare const magenta: any;
 export declare const logger: {
     success: (message: string, ...optionalParams: any[]) => void;
     info: (message: string, ...optionalParams: any[]) => void;
